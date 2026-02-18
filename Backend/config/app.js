@@ -15,10 +15,10 @@ function createApp() {
     const app = express();
 
     // Servir archivos estáticos del frontend
-    app.use(express.static(path.join(__dirname, "../../Frontend")));
+    app.use(express.static(path.join(__dirname, "../../Frontend/index")));
 
     // Fallback para SPA
-    app.use((req, res) => {
+    app.get(/^(?!\/api).+/, (req, res) => {
     res.sendFile(path.join(__dirname, "../../Frontend/index/index.html"));
     });
 

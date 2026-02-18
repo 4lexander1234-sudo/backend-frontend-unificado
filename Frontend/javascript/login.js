@@ -125,9 +125,9 @@ btnlogin.addEventListener("click", () => {
 
       // damos acceso por el rol
     if (userData.rol === "Admin") {
-      window.location.href = "admin.html";
+      window.location.href = "/index/admin.html";
     } else {
-      window.location.href = "index.html";
+      window.location.href = "/index/index.html";
     }
 
     } catch (error) {

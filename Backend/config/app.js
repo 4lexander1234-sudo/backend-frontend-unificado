@@ -37,7 +37,7 @@ function createApp() {
     app.use("/api/user", userRoutes);
 
     // 1. Ruta base al Frontend
-    const frontendPath = path.join(__dirname, "../../Frontend");
+    const frontendPath = path.join(__dirname, "../Frontend");
 
     // 2. Servir la raíz del Frontend
     app.use(express.static(frontendPath));
@@ -47,8 +47,7 @@ function createApp() {
     app.use('/js', express.static(path.join(frontendPath, "js"))); 
     app.use('/index', express.static(path.join(frontendPath, "index")));
 
-    // 4. EL FALLBACK PARA SPA (DEBE IR AL FINAL)
-    // Solo si no encontró un archivo estático ni una ruta de API, entrega el HTML
+    
     app.get('/*splat', (req, res) => {
         res.sendFile(path.join(__dirname, "../../Frontend/index/index.html"));
     });

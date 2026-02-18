@@ -18,8 +18,8 @@ function createApp() {
     app.use(express.static(path.join(__dirname, "../../Frontend")));
 
     // Fallback para SPA
-    app.get("*", (req, res) => {
-        res.sendFile(path.join(__dirname, "../../frontend/index.html"));
+    app.use((req, res) => {
+        res.sendFile(path.join(__dirname, "../../Frontend/index.html"));
     });
 
 

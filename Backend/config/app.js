@@ -19,7 +19,7 @@ function createApp() {
 
     // Fallback para SPA
     app.use((req, res) => {
-    res.sendFile(path.join(__dirname, "../../Frontend/index.html"));
+    res.sendFile(path.join(__dirname, "../../Frontend/index/index.html"));
     });
 
 

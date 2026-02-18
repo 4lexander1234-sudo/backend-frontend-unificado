@@ -1,5 +1,5 @@
 const express = require("express");
-const path = require("path");
+const path = require("path"); // ¡Obligatorio para las rutas!
 const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
@@ -12,47 +12,57 @@ const userRoutes = require("../routes/userRoutes");
 function createApp() {
     const app = express();
 
-    // 1. SEGURIDAD Y LOGGING (Primero lo básico)
+    // 1. SEGURIDAD Y MIDDLEWARES BÁSICOS
     app.use(cors({ origin: "*" }));
+    // Ajustamos Helmet para que no bloquee tus estilos/scripts locales
+    app.use(helmet({ contentSecurityPolicy: false }));
     app.use(morgan("combined"));
-    
-    // Configuración de Helmet ajustada para que permita cargar CSS/JS locales sin dramas
-    app.use(helmet({
-        contentSecurityPolicy: false, 
-    }));
-
-    app.disable("x-powered-by");
     app.use(express.json({ limit: "1mb" }));
+    app.disable("x-powered-by");
 
-    // 2. ARCHIVOS ESTÁTICOS
-    // Esto permite que si el HTML pide "index/style.css", Express lo encuentre
-    app.use(express.static(path.join(__dirname, "../../Frontend")));
+    // 2. CONFIGURACIÓN DE ARCHIVOS ESTÁTICOS (EL FRONTEND)
+    // __dirname está en Backend/config, subimos dos niveles para llegar a Frontend
+    const frontendPath = path.join(__dirname, "../../Frontend");
 
-    
+    // Servimos la carpeta raíz del frontend
+    app.use(express.static(frontendPath));
 
-    // 3. RUTAS DE LA API
+    // Mapeos específicos según tu estructura de carpetas
+    app.use('/css', express.static(path.join(frontendPath, "css")));
+    app.use('/img', express.static(path.join(frontendPath, "img")));
+    app.use('/javascript', express.static(path.join(frontendPath, "javascript")));
+    app.use('/index', express.static(path.join(frontendPath, "index")));
+
+    // 3. RUTA RAÍZ (Para que no salga "Cannot GET /")
+    app.get('/', (req, res) => {
+        res.sendFile(path.join(frontendPath, "index/index.html"));
+    });
+
+    // 4. RUTAS DE LA API
     app.use("/api/clients", clientRoutes);
     app.use("/api/auth", authRoutes);
     app.use("/api/documents", docRoutes);
     app.use("/api/user", userRoutes);
 
-    // 1. Ruta base al Frontend
-    const frontendPath = path.join(__dirname, "../Frontend");
+    // 5. LIMITADOR DE PETICIONES
+    const limiter = rateLimit({
+        windowMs: 15 * 60 * 1000,
+        max: 100,
+        standardHeaders: true,
+        legacyHeaders: false,
+        message: { error: "Demasiadas peticiones, por favor intenta más tarde." }
+    });
+    app.use(limiter);
 
-    // 2. Servir la raíz del Frontend
-    app.use(express.static(frontendPath));
-
-    // 3. Mapeos específicos (esto fuerza a Express a encontrar las subcarpetas)
-    app.use('/css', express.static(path.join(frontendPath, "css")));
-    app.use('/js', express.static(path.join(frontendPath, "js"))); 
-    app.use('/index', express.static(path.join(frontendPath, "index")));
-
-    
+    // 6. FALLBACK PARA RUTAS NO ENCONTRADAS (SPLAT)
+    // Si alguien refresca la página, lo mandamos al index
     app.get('/*splat', (req, res) => {
-        res.sendFile(path.join(__dirname, "../../Frontend/index/index.html"));
+        // Si la ruta pide un archivo (tiene punto), no mandamos el HTML
+        if (req.path.includes('.')) return res.status(404).send("Archivo no encontrado");
+        res.sendFile(path.join(frontendPath, "index/index.html"));
     });
 
-    // 5. MANEJO DE ERRORES
+    // 7. MANEJO DE ERRORES
     app.use((err, req, res, next) => {
         console.error("Error:", err);
         res.status(err.status || 409).json({

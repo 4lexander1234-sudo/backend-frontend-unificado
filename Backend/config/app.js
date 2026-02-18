@@ -24,15 +24,19 @@ function createApp() {
     app.disable("x-powered-by");
     app.use(express.json({ limit: "1mb" }));
 
-    // 2. ARCHIVOS ESTÁTICOS
-    // Esto permite que si el HTML pide "index/style.css", Express lo encuentre
-    app.use(express.static(path.join(__dirname, "../../Frontend")));
-
-    // 1. Ruta base al Frontend
     const frontendPath = path.join(__dirname, "../../Frontend");
 
-    // 2. Servir la raíz del Frontend
-    app.use(express.static(frontendPath));
+// 1. Mapeo para que el navegador encuentre "/Frontend/..."
+// Esto soluciona las rutas que ya tienes en el HTML
+app.use("/Frontend", express.static(frontendPath));
+
+// 2. Mapeo para rutas cortas (por si acaso)
+app.use(express.static(frontendPath));
+
+// 3. RUTA RAÍZ (Fundamental para evitar el 404)
+app.get('/', (req, res) => {
+    res.sendFile(path.join(frontendPath, "index/index.html"));
+});
 
     // 3. Mapeos específicos (esto fuerza a Express a encontrar las subcarpetas)
     app.use('/css', express.static(path.join(frontendPath, "css")));

@@ -24,14 +24,14 @@ category.forEach(cat => {
 });
 
 const products = [
-{nombre: "Lavadoras", icono: "<img class='img1' src='/Frontend/img/washing-machine.png' alt='Lavadoras' tabindex='0'>"},
-{nombre: "Neveras", icono: "<img class='img2' src='/Frontend/img/freezer.png' alt='Neveras'>"},
-{nombre: "Televisores", icono: "<img class='img3' src='/Frontend/img/smart.png' alt='Televisores'>"},
-{nombre: "Equipos de audio", icono: "<img class='img4' src='/Frontend/img/mixing-table.png' alt='Equipos de audio'>"},
-{nombre: "Calentadores", icono: "<img class='img5' src='/Frontend/img/gas-heater.png' alt='Calentadores'>"},
-{nombre: "Estufas", icono: "<img class='img6' src='/Frontend/img/gas-stove.png' alt='Estufas'>"},
-{nombre: "Aire acondicionado", icono: "<img class='img7' src='/Frontend/img/air-conditioner.png' alt='Aire acondicionado'>"},
-{nombre: "Computadores", icono: "<img class='img8' src='/Frontend/img/computer.png' alt='Computadores'>"},
+{nombre: "Lavadoras", icono: "<img class='img1' src='/img/washing-machine.png' alt='Lavadoras' tabindex='0'>"},
+{nombre: "Neveras", icono: "<img class='img2' src='/img/freezer.png' alt='Neveras'>"},
+{nombre: "Televisores", icono: "<img class='img3' src='/img/smart.png' alt='Televisores'>"},
+{nombre: "Equipos de audio", icono: "<img class='img4' src='/img/mixing-table.png' alt='Equipos de audio'>"},
+{nombre: "Calentadores", icono: "<img class='img5' src='/img/gas-heater.png' alt='Calentadores'>"},
+{nombre: "Estufas", icono: "<img class='img6' src='/img/gas-stove.png' alt='Estufas'>"},
+{nombre: "Aire acondicionado", icono: "<img class='img7' src='/img/air-conditioner.png' alt='Aire acondicionado'>"},
+{nombre: "Computadores", icono: "<img class='img8' src='/img/computer.png' alt='Computadores'>"},
 ]
 
 const con = document.getElementById("cont-services-group");

@@ -18,10 +18,8 @@ function createApp() {
     app.use(express.static(path.join(__dirname, "../../Frontend/index")));
 
     // Fallback para SPA
-    app.get(".*" ,(req, res) => {
-    res.sendFile(path.join(__dirname, "../../Frontend/index/index.html"));
-    });
-
+    app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, "../../Frontend/index/index.html"));});
 
     app.disable("x-powered-by");
 

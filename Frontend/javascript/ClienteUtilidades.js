@@ -25,7 +25,7 @@ class ClienteUtilidades {
     this.form.email.value = cliente.email;
     this.form.telefono.value = cliente.telefono;
     this.form.direccion.value = cliente.direccion;
-    this.form.tipo_doc.value = cliente.id_tipo_documento;
+    this.form.tipo_doc.value = cliente.tipo_documento;
     this.Id = cliente.id_cliente;
   }
 

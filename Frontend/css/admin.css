@@ -351,6 +351,7 @@
         .datos div p{
             width: 20rem;
             text-align: start;
+            color: var(--clr-black);
 
         }
 

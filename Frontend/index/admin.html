@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Frontend/css/admin.css">
+    <title>ServiElect</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="bar">
+                <div class="bar-center">
+                    <div class="bar-one">
+                        <div class="bar-one-one"><span class="phone-number"><i class="bi bi-telephone"></i>+573 137 508 128</span></div>
+                        <div class="bar-one-two"><span class="email"><i class="bi bi-envelope"></i>info@Servielect.com</span></div>
+                    </div>
+                    <div class="bar-two"><span class="location"><i class="bi bi-geo-alt"></i>Bogotá,Colombia</span></div>
+                </div>
+            </div>
+            <nav>
+                <div class="nav-center">
+                    <div class="nav-logo">
+                        <img src="/Frontend/img/image.png.png" alt="Servielect">
+                        <div>
+                            <p><span class="span-1">S</span>ERVI<span>ELECT</span></p>
+                            <p class="p-1">Tecnología & Servicio</p>
+                        </div>
+                    </div>
+                    <div>
+                        <ul class="nav-ul">
+                            <li><a class="nav-li" href="#section-1">Clientes</a></li>
+                            <li><a class="nav-li" href="#section-2">Productos</a></li>
+                            <li><a class="nav-li" href="#section-4">Servicios</a></li>
+                            <li><a class="nav-li" href="#section-5">Inventario</a></li>
+                            <li><a class="nav-li" href="#footer">Ventas</a></li>
+                        </ul>
+                    </div>
+                    <div class="nav-quote">
+                        <button class="tipo-login">Admin</button>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <section class="section-1 " id="section-1">
+                <div class="cont" id="contenedor1">
+                    <div class="cont1">
+                        <form  class="for" id="formulario">
+                            <h1 >Formulario Registro</h1>
+                            <div class="label1">
+                            <input type="text" class="input" id="nombre" placeholder="" required>
+                            <label for="nombre">Nombre</label>
+                            </div>
+                            <div class="label1">
+                            <input type="text" class="input" id="apellido" placeholder="" required>
+                            <label for="apellido">Apellido</label>
+                            </div>  
+                            <div class="label1">
+                                <input type="text" id="tipo_doc" class="input" placeholder="" required>
+                                <label for="tipo_doc">Tipo de Documento</label>
+                                <div id="opciones">
+                                    <div data-value="CC">Cédula de ciudadanía</div>
+                                    <div data-value="CE">Cédula de extranjería</div>
+                                    <div data-value="TI">Tarjeta de identidad</div>
+                                    <div data-value="PP">Pasaporte</div>
+                                    <div data-value="NIT">Nit</div>
+                                    <div data-value="PT">Permiso Protección Temporal</div>
+                              </div>
+                            </div>
+                            <div class="label1">
+                            <input type="text" class="input" id="numero" placeholder="" required>
+                            <label for="numero">Numero de Documento</label>
+                             </div>
+                             <div class="label1" >
+                               <input type="text" class="input" id="email" placeholder="" required>
+                               <label for="email">Email</label>
+                             </div>
+                             <div class="label1">
+                               <input type="text" class="input" id="telefono" placeholder="" required>
+                               <label for="telefono">Telefono</label>
+                             </div>
+                             <div class="label1">
+                               <input type="text" class="input" id="direccion" placeholder="" required>
+                               <label for="direccion">Direccion</label>
+                             </div>
+                             <div class="label1">
+                               <button  id="btn" class="btn">Registrar</button>
+                             </div>
+                        </form>
+                        <div class="info" id="info"></div>
+                    </div>
+                </div>
+                <div class="cont2">
+                    <div class="datos" id="datos"></div>
+              </div>
+            </section>
+        </main>
+    </div>
+</body>
+<script src="/Frontend/javascrip/admin.js"></script>
+<script src="/Frontend/javascrip/Cliente.js"></script>
+<script src="/Frontend/javascrip/Repository.js"></script>
+<script src="/Frontend/javascrip/ClienteUtilidades.js"></script>
+<script src="/Frontend/javascrip/Controller.js"></script>
+
+</html>

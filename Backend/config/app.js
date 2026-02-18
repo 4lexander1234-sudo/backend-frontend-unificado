@@ -28,12 +28,6 @@ function createApp() {
     // Esto permite que si el HTML pide "index/style.css", Express lo encuentre
     app.use(express.static(path.join(__dirname, "../../Frontend")));
 
-    // 3. RUTAS DE LA API
-    app.use("/api/clients", clientRoutes);
-    app.use("/api/auth", authRoutes);
-    app.use("/api/documents", docRoutes);
-    app.use("/api/user", userRoutes);
-
     // 1. Ruta base al Frontend
     const frontendPath = path.join(__dirname, "../../Frontend");
 
@@ -44,6 +38,13 @@ function createApp() {
     app.use('/css', express.static(path.join(frontendPath, "css")));
     app.use('/js', express.static(path.join(frontendPath, "js"))); 
     app.use('/index', express.static(path.join(frontendPath, "index")));
+
+    // 3. RUTAS DE LA API
+    app.use("/api/clients", clientRoutes);
+    app.use("/api/auth", authRoutes);
+    app.use("/api/documents", docRoutes);
+    app.use("/api/user", userRoutes);
+
 
     // 4. EL FALLBACK PARA SPA (DEBE IR AL FINAL)
     // Solo si no encontró un archivo estático ni una ruta de API, entrega el HTML

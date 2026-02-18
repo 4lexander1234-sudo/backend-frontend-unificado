@@ -9,55 +9,44 @@ const authRoutes = require("../routes/authRoutes");
 const docRoutes = require("../routes/docRoutes");
 const userRoutes = require("../routes/userRoutes");
 
-
-// creamos la instancia de express
 function createApp() {
     const app = express();
 
-    // Servir archivos estáticos del frontend
-    app.use(express.static(path.join(__dirname, "../../Frontend")));
-
-    // Fallback para SPA
-    app.get('/*splat', (req, res) => {
-    res.sendFile(path.join(__dirname, "../../Frontend/index/index.html"));});
+    // 1. SEGURIDAD Y LOGGING (Primero lo básico)
+    app.use(cors({ origin: "*" }));
+    app.use(morgan("combined"));
+    
+    // Configuración de Helmet ajustada para que permita cargar CSS/JS locales sin dramas
+    app.use(helmet({
+        contentSecurityPolicy: false, 
+    }));
 
     app.disable("x-powered-by");
+    app.use(express.json({ limit: "1mb" }));
 
-    //middleware para parsear JSON con limite
-    app.use(express.json({limit: "1mb"}));
+    // 2. ARCHIVOS ESTÁTICOS
+    // Esto permite que si el HTML pide "index/style.css", Express lo encuentre
+    app.use(express.static(path.join(__dirname, "../../Frontend")));
 
-    //middleware de seguridad HTTP
-    app.use(helmet());
+    // 3. RUTAS DE LA API
+    app.use("/api/clients", clientRoutes);
+    app.use("/api/auth", authRoutes);
+    app.use("/api/documents", docRoutes);
+    app.use("/api/user", userRoutes);
 
-    //middleware de logging
-    app.use(morgan("combined"));
-
-    //middleware de CORS
-    app.use(cors({origin:"*"}));
-    
-    
-    //middleware de limitacion de peticiones
-    const limiter = rateLimit({
-        windowMs: 15 * 60 * 1000,
-        max: 100,
-        standardHeaders: true,
-        legacyHeaders: false,
-        message: { error : " Demasiadas peticiones, por favor intenta más tarde."}
+    // 4. EL FALLBACK PARA SPA (DEBE IR AL FINAL)
+    // Solo si no encontró un archivo estático ni una ruta de API, entrega el HTML
+    app.get('/*splat', (req, res) => {
+        res.sendFile(path.join(__dirname, "../../Frontend/index/index.html"));
     });
-    app.use(limiter);
 
-    // middleware de manejo de errores
-    app.use((err, req, res, next)=> {
+    // 5. MANEJO DE ERRORES
+    app.use((err, req, res, next) => {
         console.error("Error:", err);
         res.status(err.status || 409).json({
             error: err.message || "Error interno del servidor"
         });
     });
-
-    app.use("/api/clients", clientRoutes);
-    app.use("/api/auth", authRoutes);
-    app.use("/api/documents", docRoutes);
-    app.use("/api/user", userRoutes);
 
     return app;
 }

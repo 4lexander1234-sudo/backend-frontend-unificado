@@ -38,13 +38,7 @@ function createApp() {
         res.sendFile(path.join(frontendPath, "index/index.html"));
     });
 
-    // 4. RUTAS DE LA API
-    app.use("/api/clients", clientRoutes);
-    app.use("/api/auth", authRoutes);
-    app.use("/api/documents", docRoutes);
-    app.use("/api/user", userRoutes);
-
-    // 5. LIMITADOR DE PETICIONES
+    // 4. LIMITADOR DE PETICIONES
     const limiter = rateLimit({
         windowMs: 15 * 60 * 1000,
         max: 100,
@@ -54,20 +48,32 @@ function createApp() {
     });
     app.use(limiter);
 
-    // 6. FALLBACK PARA RUTAS NO ENCONTRADAS (SPLAT)
-    // Si alguien refresca la página, lo mandamos al index
-    app.get('/*splat', (req, res) => {
-        // Si la ruta pide un archivo (tiene punto), no mandamos el HTML
-        if (req.path.includes('.')) return res.status(404).send("Archivo no encontrado");
-        res.sendFile(path.join(frontendPath, "index/index.html"));
+    // 5. RUTAS DE LA API
+    app.use("/api/clients", clientRoutes);
+    app.use("/api/auth", authRoutes);
+    app.use("/api/documents", docRoutes);
+    app.use("/api/user", userRoutes);
+
+    
+    // 6. MANEJO DE ERRORES
+    app.use('/api/*path', (req, res) => {
+    res.status(404).json({
+        error: "Ruta de API no encontrada"
+    });
     });
 
-    // 7. MANEJO DE ERRORES
     app.use((err, req, res, next) => {
         console.error("Error:", err);
-        res.status(err.status || 409).json({
+        res.status(err.status || 500).json({
             error: err.message || "Error interno del servidor"
         });
+    });
+
+    // 7. FALLBACK PARA RUTAS NO ENCONTRADAS (SPLAT)
+    // Si alguien refresca la página, lo mandamos al index
+    app.get('/*splat', (req, res) => {
+        if (req.path.includes('.')) return res.status(404).send("Archivo no encontrado");
+        res.sendFile(path.join(frontendPath, "index/index.html"));
     });
 
     return app;

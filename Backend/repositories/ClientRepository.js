@@ -20,7 +20,8 @@ class ClientRepository {
   async create(payload) {
     const { data, error } = await supabase
       .from("cliente")
-      .insert([payload]);
+      .insert([payload])
+      .select();
     if (error){
       const err = new Error(error.message);
       err.code = error.code;
@@ -28,7 +29,7 @@ class ClientRepository {
       err.hint = error.hint;
       throw err;
     }
-    return data;
+    return data[0];
   }
 
   async update(id, payload) {

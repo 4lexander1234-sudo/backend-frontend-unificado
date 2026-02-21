@@ -23,7 +23,7 @@ class ClientController {
   async create(req, res, next) {
     try {
       const client = await clientService.create(req.body);
-      res.status(201).json(client);
+      res.status(201).json({id_cliente:client.id_cliente});
     } catch (err) {
   // Manejo de errores conocidos
     console.error(err.message);

@@ -32,7 +32,7 @@ class ClienteRepositorio {
   //metodo para actualizar clientes
   async actualizar(id, cliente) {
     try {
-    const response = await fetch(`/api/clients/${id}`, {
+    const response = await fetch(`/api/clients/update/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -57,7 +57,7 @@ class ClienteRepositorio {
   //metodo para eliminar clientes
   async eliminar(id) {
   try {
-    const response = await fetch(`/api/clients/${id}`, {
+    const response = await fetch(`/api/clients/delete/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

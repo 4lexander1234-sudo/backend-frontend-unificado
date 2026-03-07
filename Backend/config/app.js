@@ -8,6 +8,7 @@ const clientRoutes = require("../routes/clientRoutes");
 const authRoutes = require("../routes/authRoutes");
 const docRoutes = require("../routes/docRoutes");
 const userRoutes = require("../routes/userRoutes");
+const productRoutes = require("../rotes/productRoutes");
 
 function createApp() {
     const app = express();
@@ -53,6 +54,7 @@ function createApp() {
     app.use("/api/auth", authRoutes);
     app.use("/api/documents", docRoutes);
     app.use("/api/user", userRoutes);
+    app.use("/api/products", productRoutes);
 
     
     // 6. MANEJO DE ERRORES

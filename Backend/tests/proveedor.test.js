@@ -48,8 +48,8 @@ describe("Pruebas integrales del modulo proveedor", () => {
             console.log("respuesta del servidor:", res.body);
         }
         expect(res.statusCode).toBe(201);
-        expect(res.body.id_producto).toBeDefined(); 
-        console.log("ID generado correctamente:", res.body.id_producto);
+        expect(res.body.id_proveedor).toBeDefined(); 
+        console.log("ID generado correctamente:", res.body.id_proveedor);
         console.log("Proveedor registrado exitosamente vía API");
         idProveedorPrueba = res.body.id_proveedor;
     });

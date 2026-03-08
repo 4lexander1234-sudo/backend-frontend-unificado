@@ -9,6 +9,8 @@ const authRoutes = require("../routes/authRoutes");
 const docRoutes = require("../routes/docRoutes");
 const userRoutes = require("../routes/userRoutes");
 const productRoutes = require("../routes/productRoutes");
+const proveedorRoutes = require("../routes/proveedorRoutes");
+const employeRoutes = require("../routes/employeRoutes");
 
 function createApp() {
     const app = express();
@@ -22,7 +24,6 @@ function createApp() {
     app.disable("x-powered-by");
 
     // 2. CONFIGURACIÓN DE ARCHIVOS ESTÁTICOS (EL FRONTEND)
-    // __dirname está en Backend/config, subimos dos niveles para llegar a Frontend
     const frontendPath = path.join(__dirname, "../../Frontend");
 
     // Servimos la carpeta raíz del frontend
@@ -55,7 +56,8 @@ function createApp() {
     app.use("/api/documents", docRoutes);
     app.use("/api/user", userRoutes);
     app.use("/api/products", productRoutes);
-    app.use("/api/proveedor", proveedorRoutes);
+    app.use("/api/proveedor",proveedorRoutes);
+    app.use("/api/employe", employeRoutes);
 
     
     // 6. MANEJO DE ERRORES

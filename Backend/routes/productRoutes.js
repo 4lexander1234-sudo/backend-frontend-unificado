@@ -4,7 +4,7 @@ const productController = require("../controllers/ProductController");
 const { authMiddleware } = require("../middlewares/auth");
 
 // CRUD de products
-router.get("/all", authMiddleware, productControllerController.list);       
+router.get("/all", authMiddleware, productController.list);       
 router.get("/:id", authMiddleware, productController.getById);    
 router.post("/create", authMiddleware, productController.create); 
 router.put("/update/:id", authMiddleware, productController.update);     

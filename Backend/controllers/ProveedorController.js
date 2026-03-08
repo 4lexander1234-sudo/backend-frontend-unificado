@@ -1,11 +1,11 @@
-const productService = require("../services/ProductService");
+const proveedorService = require("../services/ProveedorService");
 
-// maneja las solictudes relacionadas con product en ProductService
-class ProductController {
+// maneja las solictudes relacionadas con proveedor en ProveedorService
+class ProveedorController {
   async list(req, res, next) {
     try {
-      const products = await productService.list();
-      res.json(products);
+      const proveedor = await proveedorService.list();
+      res.json(proveedor);
     } catch (err) {
       next(err);
     }
@@ -13,8 +13,8 @@ class ProductController {
 
   async getById(req, res, next) {
     try {
-      const product = await productService.getById(req.params.id);
-      res.json(product);
+      const proveedor = await proveedorService.getById(req.params.id);
+      res.json(proveedor);
     } catch (err) {
       next(err);
     }
@@ -22,13 +22,13 @@ class ProductController {
 
   async create(req, res, next) {
   try {
-    const product = await productService.create(req.body);
-    res.status(201).json({ id_producto: product.id_producto });
+    const proveedor = await proveedorService.create(req.body);
+    res.status(201).json({ id_proveedor: proveedor.id_proveedor });
   } catch (err) {
     console.error("Detalle del error:", err);
     if (err.code === "23503") {
       return res.status(400).json({ 
-        error: "Error de relación: La categoría, marca o proveedor no existen." 
+        error: "Error de relación." 
       });
     }
 
@@ -38,7 +38,7 @@ class ProductController {
     }
 
     // 3. Tus validaciones manuales
-    if (err.message === "producto ya registrado") {
+    if (err.message === "proveedor ya registrado") {
       return res.status(409).json({ error: err.message }); 
     }
     
@@ -56,8 +56,8 @@ class ProductController {
 
   async update(req, res, next) {
     try {
-      const product = await productService.update(req.params.id, req.body);
-      res.json(product);
+      const proveedor = await proveedorService.update(req.params.id, req.body);
+      res.json(proveedor);
     } catch (err) {
       next(err);
     }
@@ -65,7 +65,7 @@ class ProductController {
 
   async delete(req, res, next) {
     try {
-      await productService.delete(req.params.id);
+      await proveedorService.delete(req.params.id);
       res.status(204).send();
     } catch (err) {
       next(err);
@@ -73,4 +73,4 @@ class ProductController {
   }
 }
 
-module.exports = new ProductController();
+module.exports = new ProveedorController();

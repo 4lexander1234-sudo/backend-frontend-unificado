@@ -3,10 +3,10 @@ const formlogin =document.getElementById("form-login");
 
 // evento click
 if (btnlogin) {
-    console.log("¡Botón encontrado con éxito!");
+    console.log("¡Botón encontrado con éxito!"); 
     btnlogin.addEventListener("click", () => {
         console.log("Click detectado, redirigiendo...");
-        window.location.href = "/index/registration.html";
+        window.location.href = "/index/Registration.html";
     });
 } else {
     console.error("Error: No se encontró ningún elemento con el ID 'btnlogin'. Revisa tu HTML.");

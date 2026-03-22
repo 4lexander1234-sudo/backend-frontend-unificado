@@ -2,11 +2,15 @@ const btnlogin = document.getElementById("btnlogin");
 const formlogin =document.getElementById("form-login");
 
 // evento click
-btnlogin.addEventListener("click", () => {
-  //llamamos el formulario de login
-  window.open.href = "Registration.html";
-});
-
+if (btnlogin) {
+    console.log("¡Botón encontrado con éxito!");
+    btnlogin.addEventListener("click", () => {
+        console.log("Click detectado, redirigiendo...");
+        window.location.href = "Registration.html";
+    });
+} else {
+    console.error("Error: No se encontró ningún elemento con el ID 'btnlogin'. Revisa tu HTML.");
+}
 // validar el email/password del usuario
  async function login(e) {
     e.preventDefault();

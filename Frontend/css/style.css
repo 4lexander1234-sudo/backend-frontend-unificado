@@ -90,14 +90,14 @@ nav{
     display: flex;
     justify-content: space-between;
     align-items:center;
-    padding-top: 0.62rem;
+    padding-top: 0;
 }
 /*El logo de Servielect*/
 .nav-logo{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.62rem;
+    margin-top: 0.2rem;
     transform: translateX(-1.87rem);
 
 }
@@ -146,21 +146,35 @@ nav{
     color: var(--clr-green);
 }
 
-/*boton*/
-.btnlogin{
-    padding: 0.81rem 2.18rem 0.81rem 2.18rem;
-    color: white;
-    font-weight: 600;
-    background:rgb(63, 73, 223);
-    border-radius: 0.31rem;
-    border: 0;
-    font-size: 1rem;
-    cursor: pointer;
+/*container de login*/
+.container-login{
+    width: 18%;
 }
 
-.nav-quote-servist:hover{
-    background-color:green;
+.login{
+    display: flex;
+    justify-content: space-around;
 }
+
+.login ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+}
+
+.login li a {
+    text-decoration: none;
+    color:var(--clr-black);
+    font-weight:700;
+    cursor: pointer;
+    }
+
+    .login li a:hover {
+      color: var(--clr-main); /* Color al pasar el mouse */
+    }
+
 
 /*panel flotante*/
 .redes-fijas {

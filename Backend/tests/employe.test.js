@@ -21,21 +21,24 @@ beforeAll(async ()=>{
     // Prueba de seguridad, obetener empleado sin token //
     test("Error 401- No deberia permitir acceso sin token", async () => {
         const res = await request(app)
-        .get("/api/clients/all");
+        .get("/api/employe/all");
         expect(res.statusCode).toBe(401);
     });
 
     // Prueba de creacion de empleado
-    test(" POST /api/employe - deberia crear un nuevo empleado", async ()=>{
+    test("POST /api/employe - deberia crear un nuevo empleado", async ()=>{
         const nuevoEmpleado = {
             nombre: "Empleado de Prueba",
             apellido: "Test",
-            tipo_documento: "Cedula de Ciudadania",
+            id_tipo_documento: '1',
             numero_documento: "1234567890",
             email: "emailPrueba@prueba.com",
             telefono: "3001234567",
             direccion: "Una Direccion de Prueba",
-            fecha_registro: new Date().toISOString()
+            fecha_contratacion: new Date().toISOString(),
+            tipo_pago: "por horas",
+            estado: "activo",
+            id_tipo_empleado: '5'
         };
         const res = await request(app)
         .post("/api/employe/create")
@@ -59,14 +62,17 @@ beforeAll(async ()=>{
     // Prueba de actualizacion de empleados //
     test("PUT /api/employe/update - deberia editar el empleado creado", async ()=> {
         const empleadoActualizado = {
-            nombre: "empleado Actualizado",
+            nombre: "Empleado actualizado",
             apellido: "Test",
-            tipo_documento: "Cedula de Ciudadania",
-            numero_documento: "1111111111111",
-            email: "updatePrueba@prueba.com",
-            telefono: "00000000000",
+            id_tipo_documento: '1',
+            numero_documento: "01234578955",
+            email: "emailPrueba@prueba.com",
+            telefono: "3001234567",
             direccion: "Una Direccion de Prueba",
-            fecha_registro: new Date().toISOString()
+            fecha_contratacion: new Date().toISOString(),
+            tipo_pago: "por horas",
+            estado: "despedido",
+            id_tipo_empleado: '5'
         };
         const res = await request(app)
         .put(`/api/employe/update/${ idEmpleadoPrueba }`)

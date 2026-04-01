@@ -9,7 +9,7 @@ btnlogin.addEventListener("click", () => {
 });
 
 btnAccount.addEventListener("click", () => {
-  window.location.href = "/frontend/index/Registration.html";
+  window.location.href = "/index/Registration.html";
 });
 // validar el email/password del usuario
 async function login(e) {

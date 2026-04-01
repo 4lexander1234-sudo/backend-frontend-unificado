@@ -31,17 +31,17 @@
                     </div>
                     <div>
                         <ul class="nav-ul">
-                            <li><a class="nav-li" href="#section-1" id="inicio">Inicio</a></li>
-                            <li><a class="nav-li" href="#section-2" id="productos">Productos</a></li>
-                            <li><a class="nav-li" href="#section-4">Servicios</a></li>
-                            <li><a class="nav-li" href="#section-5">Nosotros</a></li>
-                            <li><a class="nav-li" href="#footer">Contacto</a></li>
+                            <li><a class="nav-li" href="/Frontend/index/index.html" id="inicio">Inicio</a></li>
+                            <li><a class="nav-li" href="/Frontend/index/index.html" id="productos">Productos</a></li>
+                            <li><a class="nav-li" href="/Frontend/index/index.html">Servicios</a></li>
+                            <li><a class="nav-li" href="/Frontend/index/index.html">Nosotros</a></li>
+                            <li><a class="nav-li" href="/Frontend/index/index.html">Contacto</a></li>
                         </ul>
                     </div>
                     <div class="container-login">
                         <div class="login">
                             <ul class="menu-login">
-                                <li class="user-login-list"><a href="@">Crear Cuenta</a></li>
+                                <li class="user-login-list"><a id="btnAccount">Crear Cuenta</a></li>
                                 <li class="user-login-list"><a id="btnlogin">Iniciar Sesion</a></li>
                             </ul>
                         </div>
@@ -49,28 +49,9 @@
                 </div>
             </nav>
         </header>
-        <aside class="redes-fijas">
-            <a href="#" target="_blank"><i class="wh bi-0 bi-whatsapp"></i></a>
-            <a href="#" target="_blank"><i class="fb bi-0 bi-facebook"></i></a>
-            <a href="#" target="_blank"><i class="tg bi-0 bi-instagram"></i></a>
-            <a href="#" target="_blank"><i class=" tw bi-0 bi-twitter"></i></a>
-        </aside>
         <main>
             <section class="section-1" id="section-1">
                 <div class="con-section-1">
-                    
-                    <div class="form">
-                        <form id="form-login" class="form-login">
-                            <h2>Bienvenido</h2>
-                            <input type="email" id="email" placeholder="Correo Electronico" required>
-                            <input type="password" id="password" placeholder="Contraseña"required>
-                            <div id="info-login" class="forgot oculto"></div>
-                            <button type="submit" >Iniciar Sesión</button>
-                            <div class="forgot">
-                                <a href="#">¿Olvidaste tu contraseña?</a>
-                            </div>
-                        </form>
-                    </div>
                     <div class="cont" id="contenedor1">
                         <div class="cont1">
                             <form  class="for" id="formulario">
@@ -96,43 +77,55 @@
                                   </div>
                                 </div>
                                 <div class="label1">
-                                <input type="text" class="input" id="numero" placeholder="" required>
-                                <label for="numero">Numero de Documento</label>
-                                 </div>
-                                 <div class="label1" >
-                                   <input type="text" class="input" id="email" placeholder="" required>
-                                   <label for="email">Email</label>
-                                 </div>
-                                 <div class="label1">
-                                   <input type="text" class="input" id="telefono" placeholder="" required>
-                                   <label for="telefono">Telefono</label>
-                                 </div>
-                                 <div class="label1">
-                                   <input type="text" class="input" id="direccion" placeholder="" required>
-                                   <label for="direccion">Direccion</label>
-                                 </div>
-                                 <div class="label1">
+                                    <input type="text" class="input" id="numero" placeholder="" required>
+                                    <label for="numero">Numero de Documento</label>
+                                </div>
+                                <div class="label1" >
+                                  <input type="text" class="input" id="email" placeholder="" required>
+                                  <label for="email">Email</label>
+                                </div>
+                                <div class="label1">
+                                  <input type="text" class="input" id="telefono" placeholder="" required>
+                                  <label for="telefono">Telefono</label>
+                                </div>
+                                <div class="label1">
+                                  <input type="text" class="input" id="direccion" placeholder="" required>
+                                  <label for="direccion">Direccion</label>
+                                </div>
+                                <div class="label1">
+                                  <input type="password" class="input" id="password" placeholder="" required>
+                                  <label for="pass">Contraseña</label>
+                                  <div class="control_password" id="control_password">
+                                    <ul id="password-requirements">
+                                         <li id="length" class="invalid">Mínimo 8 caracteres</li>
+                                         <li id="uppercase" class="invalid">Una letra mayúscula</li>
+                                         <li id="number" class="invalid">Un número</li>
+                                    </ul>
+                                </div>
+                                </div>
+                                <div class="accept-contact">
+                                   <input type="checkbox" id="accept_contact" name="accept_contact" checked>
+                                   <label for="accept_contact">Acepto que me contacten por SMS y WhatsApp.</label>
+                                </div>
+                                <div class="accept-contact">
+                                   <p class="legal-text">
+                                        Al continuar, autorizo el uso de mis datos de acuerdo a la 
+                                        <a href="/privacidad" target="_blank">Declaración de privacidad</a> 
+                                        y acepto los <a href="/terminos" target="_blank">Términos y condiciones</a> 
+                                        y la <a href="/tratamiento-datos" target="_blank">Autorización de tratamiento de datos</a>.
+                                    </p>
+                                </div>
+                                <div class="info-registration" id="info_registration"></div>
+                                <div class="label1">
                                    <button  id="btn" class="btn">Registrar</button>
-                                 </div>
+                                </div>
                             </form>
-                        <div class="info" id="info"></div>
                     </div>
                 </div>
             </section>
-            <footer id="footer">
-                <div class="copy">
-                    <div class="center">
-                        <p>© 2024 ServiElect. Todos los derechos reservados.</p>
-                        <div class="p-6">
-                            <p><a href="#section-1">Términos de Servicio</a></p>
-                            <p><a href="#section-1">Política de Privacidad</a></p>
-                            <p><a href="#section-1">Garantías</a></p>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </main>
     </div>
 </body>
-<script src="/javascript/login.js"></script>
+<script src="/javascript/registration.js"></script>
+<script src="/Frontend/javascript/admin.js"></script>
 </html>

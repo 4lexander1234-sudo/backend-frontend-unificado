@@ -18,19 +18,27 @@ class ClientRepository {
   }
 
   async create(payload) {
-    const { data, error } = await supabase
-      .from("cliente")
-      .insert([payload])
-      .select();
-    if (error){
-      const err = new Error(error.message);
-      err.code = error.code;
-      err.details = error.details;
-      err.hint = error.hint;
-      throw err;
+    const { data, error } = await supabase.auth.signUp({
+      email: payload.email,
+      password: payload.password,
+      options: {
+        data: {
+          nombre:payload.nombre, 
+          apellido: payload.apellido,
+          tipo_documento: payload.tipo_documento,
+          numero_documento:payload.numero_documento,
+          email: payload.email,
+          telefono: payload.telefono,
+          direccion: payload.direccion,
+          password: payload.password,
+          acepta_contacto: payload.acepto_contacto
+        }
     }
-    return data;
-  }
+  });
+
+  if (error) console.log("Error:", error.message);
+  else console.log("¡Cliente creado con éxito!", data.user);
+}
 
   async update(id, payload) {
     const { data, error } = await supabase

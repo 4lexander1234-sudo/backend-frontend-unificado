@@ -29,7 +29,7 @@ class ClientRepository {
       err.hint = error.hint;
       throw err;
     }
-    return data[0];
+    return data;
   }
 
   async update(id, payload) {

@@ -7,6 +7,7 @@ const reqLength = document.getElementById("length");
 const reqUpper = document.getElementById("uppercase");
 const reqNumber = document.getElementById("number");
 
+
 // evento click 
 btnlogin.addEventListener("click", () => {
   window.location.href = "/frontend/index/login.html";

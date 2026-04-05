@@ -3,7 +3,7 @@ const { supabase } = require("../config/db");
 
 class ClientRepository {
   async findAll() {
-    const { data, error } = await supabase.from("cliente").select("*").order("id_cliente", { ascending: false});
+    const { data, error } = await supabase.from("cliente").select("*").order("id", { ascending: false});
     if (error) throw new Error(error.message);
     return data;
   }
@@ -12,7 +12,7 @@ class ClientRepository {
     const { data, error } = await supabase
       .from("cliente")
       .select("*")
-      .eq("id_cliente", id);
+      .eq("id", id);
     if (error && error.code !== "PGRST116") throw new Error(error.message);
     return data || null;
   }
@@ -51,13 +51,13 @@ class ClientRepository {
     const { data, error } = await supabase
       .from("cliente")
       .update(payload)
-      .eq("id_cliente", id);
+      .eq("id", id);
     if (error) throw new Error(error);
     return data;
   }
 
   async delete(id) {
-    const { error } = await supabase.from("cliente").delete().eq("id_cliente", id).single();
+    const { error } = await supabase.from("cliente").delete().eq("id", id).single();
     if (error) throw new Error(error.message);
     return true;
   }

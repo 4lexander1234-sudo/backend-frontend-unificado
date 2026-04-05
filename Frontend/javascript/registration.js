@@ -77,7 +77,7 @@ formulario.addEventListener("submit", async (e) => {
       telefono: telefono,
       direccion:document.getElementById("direccion").value,
       password: passwordInput.value,
-      acepta_contacto: document.getElementById("accept_contact").checked
+      acepto_contacto: document.getElementById("accept_contact").checked
   };
  
   try {
@@ -98,7 +98,7 @@ formulario.addEventListener("submit", async (e) => {
 
     const data = await response.json();
     console.log(data);
-    console.log("Cliente guardado:", data);
+    console.log("Cliente guardado:", cliente);
     return {data};
   } catch (error) {
     console.error("Hubo un problema:", error.message);

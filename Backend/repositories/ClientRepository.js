@@ -18,6 +18,7 @@ class ClientRepository {
   }
 
   async create(payload) {
+    try{
     const { data, error } = await supabase.auth.signUp({
       email: payload.email,
       password: payload.password,
@@ -30,14 +31,20 @@ class ClientRepository {
           email: payload.email,
           telefono: payload.telefono,
           direccion: payload.direccion,
-          password: payload.password,
-          acepta_contacto: payload.acepto_contacto
+          acepto_contacto: payload.acepto_contacto
         }
     }
   });
 
-  if (error) console.log("Error:", error.message);
-  else console.log("¡Cliente creado con éxito!", data.user);
+  if (error) throw error; // Lanza el error para capturarlo en el catch
+
+    console.log("¡Cliente y Auth creados con éxito!");
+    return data.user;
+
+  } catch (error) {
+    console.error("Error en el registro de ElectroGestión:", error.message);
+    return null;
+  }
 }
 
   async update(id, payload) {

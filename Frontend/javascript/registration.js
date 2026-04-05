@@ -71,8 +71,8 @@ formulario.addEventListener("submit", async (e) => {
   const cliente = {
       nombre: document.getElementById("nombre").value,
       apellido: document.getElementById("apellido").value,
-      tipo_doc: document.getElementById("tipo_doc").value,
-      numero: document.getElementById("numero").value,
+      tipo_documento: document.getElementById("tipo_doc").value,
+      numero_documento: document.getElementById("numero").value,
       email: email,
       telefono: telefono,
       direccion:document.getElementById("direccion").value,

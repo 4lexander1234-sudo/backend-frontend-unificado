@@ -17,6 +17,15 @@ class ClientRepository {
     return data || null;
   }
 
+  async findByEmail(email) {
+    const { data, error } = await supabase
+      .from("cliente")
+      .select("*")
+      .eq("email", email);
+    if (error) throw new Error(error.message);
+    return data || null;
+  }
+
   async create(payload) {
     try{
     const { data, error } = await supabase.auth.signUp({
@@ -43,7 +52,7 @@ class ClientRepository {
 
   } catch (error) {
     console.error("Error en el registro de ElectroGestión:", error.message);
-    return null;
+    return error.message;
   }
 }
 

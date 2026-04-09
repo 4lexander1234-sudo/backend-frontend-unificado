@@ -609,12 +609,12 @@ input:not(:placeholder-shown) + label{
 .alert-danger{
     font-size: 1.2rem;
     text-align: center;
-    color: var(--clr-red);  
+    color: red;  
 }
 .alert-success{
     font-size: 1.2rem;
     text-align: center;
-    color:var(--clr-white);
+    color: green;
     
 }
 

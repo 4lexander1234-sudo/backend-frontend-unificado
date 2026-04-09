@@ -97,11 +97,13 @@ formulario.addEventListener("submit", async (e) => {
     }
 
     const data = await response.json();
-    console.log(data);
-    console.log("Cliente guardado:", cliente);
+    console.log("Cliente guardado:",data);
+    formulario.reset();
+    loginAlerta("Registro exitoso!", "success");
     return {data};
   } catch (error) {
     console.error("Hubo un problema:", error.message);
+    loginAlerta("Error en el registro.", "danger");
     return {error};
   }
 

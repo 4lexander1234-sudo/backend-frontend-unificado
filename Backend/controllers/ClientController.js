@@ -29,7 +29,7 @@ class ClientController {
     console.error(err.message);
 
     if (err.message === "Email ya registrado") {
-      return res.status(409).json({ error: err.message }); 
+      return res.status(422).json({ error: err.message }); 
     }
     if (err.message === "Datos son requeridos") {
       return res.status(400).json({ error: err.message });    }

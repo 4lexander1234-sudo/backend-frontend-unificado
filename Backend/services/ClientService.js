@@ -21,7 +21,7 @@ class ClientService {
     }
     // Validar duplicados por email
     const existing = await clientRepository.findByEmail(payload.email);
-    if (existing) {
+    if (existing && existing.length > 0) {
       throw new Error("Email ya registrado");
     }
 

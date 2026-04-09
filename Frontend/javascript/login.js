@@ -5,7 +5,7 @@ const btnAccount = document.getElementById("btnAccount");
 
 // evento click 
 btnlogin.addEventListener("click", () => {
-  window.location.href = "/frontend/index/login.html";
+  window.location.href = "/index/login.html";
 });
 
 btnAccount.addEventListener("click", () => {

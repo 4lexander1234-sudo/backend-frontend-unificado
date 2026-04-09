@@ -5,10 +5,12 @@
     padding: 0;
 }
 
-input:-webkit-autofill {
-    background-color: white !important;
-    color: black !important;
-    box-shadow: 0 0 0px 1000px var(--clr-white) inset !important;
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus {
+    -webkit-text-fill-color: black !important;
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+    transition: background-color 5000s ease-in-out 0s;
 }
 
 body{
@@ -26,7 +28,7 @@ body{
 :root{
     --clr-main: rgb(39, 107, 231);
     --clr-button: rgb(50, 160, 50);
-    --clr-green:grb(34, 173, 104);
+    --clr-green:rgb(34, 173, 104);
     --clr-white:#f9f9f9;
     --clr-black:#333;
     --clr-gray:#ccc;
@@ -252,7 +254,7 @@ nav{
     content: "";
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: url('/Frontend/img/1781.png') no-repeat center center / cover;
+    background: url('/img/1781.png') no-repeat center center / cover;
     opacity: 0.5; /* solo el fondo será opaco */
     z-index: -1; /* detrás del contenido */
 }

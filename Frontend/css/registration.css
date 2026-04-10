@@ -199,12 +199,15 @@ nav{
 }
 
  .section-1::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
+  content: "";
+    position: fixed; /* Cambiado de absolute a fixed */
+    top: 0; 
+    left: 0; 
+    width: 100vw;   /* 100% del ancho de la pantalla */
+    height: 100vh;  /* 100% del alto de la pantalla */
     background: url('/img/1781.png') no-repeat center center / cover;
-    opacity: 0.5; /* solo el fondo será opaco */
-    z-index: -1; /* detrás del contenido */
+    opacity: 0.5;
+    z-index: -1;
 }
 
 .con-section-1{

@@ -89,7 +89,7 @@ formulario.addEventListener("submit", async (e) => {
       body: JSON.stringify(cliente)
     });
 
-    if (response.status === 409) {
+    if (response.status === 422) {
       throw new Error("Email ya registrado");
     }
     if (!response.ok) {
@@ -99,11 +99,11 @@ formulario.addEventListener("submit", async (e) => {
     const data = await response.json();
     console.log("Cliente guardado:",data);
     formulario.reset();
-    loginAlerta("Registro exitoso!", "success");
+    loginAlerta("Registro exitoso!, ya puedes iniciar sesión", "success");
     return {data};
   } catch (error) {
     console.error("Hubo un problema:", error.message);
-    loginAlerta("Error en el registro.", "danger");
+    loginAlerta("Error en el registro: " + error.message, "danger");
     return {error};
   }
 

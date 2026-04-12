@@ -26,8 +26,8 @@ formlogin.addEventListener("submit", async (e) => {
 
   try {
   // 1. Petición de login
-    const emailResponse = await fetch(`https://backend-frontend-unificado.onrender.com/api/clients/${email}`, {
-      method: "POST",
+    const emailResponse = await fetch(`https://backend-frontend-unificado.onrender.com/api/clients/findByEmail/${email}`, {
+      method: "GET",
       headers: {
         "Content-Type": "application/json"
       },

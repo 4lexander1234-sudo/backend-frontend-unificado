@@ -20,6 +20,15 @@ class ClientController {
     }
   }
 
+  async findByEmail(req, res, next) {
+    try {
+      const client = await clientService.findByEmail(req.params.email);
+      res.json(client);
+    } catch (err) {
+      next(err);
+    }
+  }
+
   async create(req, res, next) {
     try {
       const client = await clientService.create(req.body);

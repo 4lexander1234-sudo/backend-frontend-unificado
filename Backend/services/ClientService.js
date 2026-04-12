@@ -12,6 +12,12 @@ class ClientService {
     return client;
   }
 
+  async findByEmail(email) {
+    const client = await clientRepository.findByEmail(email);
+    if (!client) throw new Error("Cliente no encontrado");
+    return client;
+  }
+
   async create(payload) {
     if (!payload) {
       throw new Error("datos son requeridos");

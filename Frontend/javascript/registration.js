@@ -10,11 +10,11 @@ const reqNumber = document.getElementById("number");
 
 // evento click 
 btnlogin.addEventListener("click", () => {
-  window.location.href = "/frontend/index/login.html";
+  window.location.href = "/index/login.html";
 });
 
 btnAccount.addEventListener("click", () => {
-  window.location.href = "/frontend/index/Registration.html";
+  window.location.href = "/index/Registration.html";
 });
 
 passwordInput.addEventListener("focus",()=>{
@@ -81,7 +81,7 @@ formulario.addEventListener("submit", async (e) => {
   };
  
   try {
-    const response = await fetch("https://backend-frontend-unificado.onrender.com/api/clients/create", {
+    const response = await fetch("/api/clients/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

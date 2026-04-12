@@ -13,58 +13,39 @@ btnAccount.addEventListener("click", () => {
   window.location.href = "/index/Registration.html";
 });
 
-forgot.addEventListener("click", () => {
-  window.location.href = "/index/forgot-password.html";
-});
 
 // validar el email/password del usuario
 formlogin.addEventListener("submit", async (e) => {
   e.preventDefault();
   const email = document.getElementById("email").value.trim();
-  const pass = document.getElementById("password").value.trim();
-    
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    loginAlerta("El formato de email no es válido.", "danger");
+      return;
+  }
+
   try {
   // 1. Petición de login
-    const loginResponse = await fetch("/api/auth/login", {
+    const emailResponse = await fetch(`https://backend-frontend-unificado.onrender.com/api/clients/${email}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({
-        email: email,
-        password: pass
-      })
     });
-    if (!loginResponse.ok) {
-      throw new Error("Error en login: " + loginResponse.status);
+    if (!emailResponse.ok) {
+      throw new Error("Error en Email: " + emailResponse.status);
     }
-    const loginData = await loginResponse.json();
-    console.log("Respuesta del servidor (login):", loginData);
-    // Guardar token en sessionStorage
-    sessionStorage.setItem("token", loginData.access_token);
-    // 2. Petición para obtener datos del usuario
-    const userResponse = await fetch(`/api/clients/${loginData.user.id}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${loginData.access_token}`
-      }
-    });
-    if (!userResponse.ok) {
-      throw new Error("Error al obtener usuario: " + userResponse.status);
-    }
-    const userData = await userResponse.json();
-    console.log("Datos del usuario:", userData);
-    sessionStorage.setItem("rol", userData.rol);
-    // damos acceso por el rol
-  if (userData.rol === "Admin") {
+    const emailData = await emailResponse.json();
+    console.log("Respuesta del servidor (email):", emailData);
+  
+  if (mailData.email === email) {
     window.location.href = "/index/index.html";
   } else {
-    window.location.href = "/index/index.html";
+    loginAlerta("Error: email no encontrado", "danger");
   }
   } catch (error) {
     console.error("Error en la petición:", error);
-    loginAlerta("error en credenciales, verifica email y/o password", "danger");
+    loginAlerta(error.message, "danger");
   }
   });
 
@@ -82,6 +63,3 @@ formlogin.addEventListener("submit", async (e) => {
       infoLogin.innerHTML = "";
     }, 5000);
   }
-
-
-
